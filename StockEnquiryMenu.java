@@ -1,13 +1,14 @@
 public class StockEnquiryMenu extends Menu{
-	private Stock stock;
+	private String stockId;
 	
-	public StockEnquiryMenu(Stock s){
-		stock = s;
+	public StockEnquiryMenu(String id){
+		stockId = id;
 	}
 	
 	@Override
 	public void printMenu(){
-		Stock[] includedStock = stock.getListOfStockID();
+		Stock enquiryStock = Stocks.findStockByID();
+		Stock[] includedStock = enquiryStock.getListOfStockID();
 		if(includedStock!=null){
 			System.out.println("Below are the friends of "+player.getName());
 			for (int i =0; i<includedStock.length;i++){
