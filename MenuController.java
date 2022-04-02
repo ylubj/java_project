@@ -10,8 +10,10 @@ public class MenuController {
 		NavigationData data = null;
 		do {
 			currMenu.printMenu();
-			System.out.print("Select an option: ");
-			int optionIndex = Integer.parseInt(MenuDemo.keyboard.nextLine());
+			Screen.printSelectOption();
+			int optionIndex = Integer.parseInt(Screen.keyboard.nextLine());
+			#check if the index is valid
+			optionIndex = currMenu.checkIndex(optionIndex);
 			data = currMenu.performAction(optionIndex);
 			if (data!= null)
 				navigate(data);
@@ -30,10 +32,10 @@ public class MenuController {
 				mainMenu.setParentMenu(currMenu);
 				currMenu = mainMenu;
 				break;
-			case ConstantFlags.NAV_PLAYER_LIST:
-				Menu playerMenu = new PlayerListMenu();
-				playerMenu.setParentMenu(currMenu);
-				currMenu = playerMenu;
+			case ConstantFlags.NAV_MY_RECORD:
+				Menu recordMenu = new StockListMenu();
+				recordMenu.setParentMenu(currMenu);
+				currMenu = recordMenu;
 				break;
 			
 			case ConstantFlags.NAV_FRIEND_LIST:

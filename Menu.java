@@ -9,6 +9,10 @@ public abstract class Menu{
 		return parentMenu;
 	}
 	
+	public int checkIndex(int i){
+		return i;
+	}
+	
 	public abstract void printMenu();
 	
 	public abstract NavigationData performAction(int optionIndex);

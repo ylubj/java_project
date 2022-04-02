@@ -28,4 +28,14 @@ public class Utilities{
 		return newDate;
 	}
     
+	public static int countFileNumber(File file){
+		Scanner fileReader = new Scanner(shares_holding);
+		int count = 0;
+		while (fileReader.hasNext()){
+				count++;
+		}
+		fileReader.close();
+		return count;
+	}
+	
 }

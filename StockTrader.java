@@ -19,6 +19,7 @@ public class StockTrader{
 		*/
 		Screen.printDateInsertion();
 		currentDate = Screen.keyboard.nextLine();
+		#recursively check if the date is a trade date
 		
 		// load Stocks Information
 		StocksInfo.loadStocks(currentDate);

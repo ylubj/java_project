@@ -1,19 +1,30 @@
 public class StockListMenu extends Menu{
 	
-	private St player;
-	
+	#private Stock player;
+	/*
 	public StockListMenu(Player p){
 		player = p;
 	}
-	
+	*/
 	@Override
 	public void printMenu(){
-		Stock[] stockList = StocksInfo.getStockList();
-		for (int i =0; i<stockList.length;i++){
-			#printShareHoldingOption(optionNum, id, amountOfShare, avgPrice, totalProfit);
+		#read file shares_holding.csv
+		File shares_holding = new File("shares-holding.csv");
+		int numHolding = Utilities.countFileNumber(shares_holding);
+		String[] stockHolding = new String[numHolding];
+		Scanner fileReader = new Scanner(shares_holding);
+		int index = 0;
+		while (fileReader.hasNext()){
+			String line = fileReader.nextLine();
+			String[] dataArr = line.split(",");
+			stockHolding[index] = dataArr[0];
+			index++;
+			 // dataArr[0] stockID; dataArr[1] #shares ....
+			printShareHoldingOption(index, dataArr[0], Integer.parseInt(dataArr[1]), Double.parseDouble(dataArr[2]), Double.parseDouble(dataArr[3]));
 		}
-		printEnquiryTradingRecordsInPeriodOption(stockList.length+1);
-		printBackOption(stockList.length+2);
+		
+		printEnquiryTradingRecordsInPeriodOption(stockHolding.length+1);
+		printBackOption(stockHolding.length+2);
 	}
 	
 	
@@ -32,7 +43,7 @@ public class StockListMenu extends Menu{
 			return new NavigationData(ConstantFlags.NAV_BACK,null,null,null);
 		}
 		return new NavigationData(
-			ConstantFlags.NAV_ORDER_BY, stickList[optionIndex-1],null,null);
+			ConstantFlags.NAV_ORDER_BY, stockHolding[optionIndex-1],null,null);
 	}
 	
 	
