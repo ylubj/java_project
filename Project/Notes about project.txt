@@ -1,0 +1,22 @@
+Read 3 files' data
+    supberclass: stocks -> (stock-meta.csv) stockID, (daily-price.csv, Date's close)currentPrice 
+    subclass: 
+        1. listedCompany (stock-meta.csv, type =1) -> (performance.csv, latest date) Profit, NAV, Dividend
+        2. ETF (stock-meta.csv, type = 2) -> (stock-meta.csv) listOfStockID
+
+Save the trade records and the shares, FileWriter, true
+    1. trade-record.csv:
+        date, stockID, price,#shares (trade), direction (1=buy, 2=sell)
+    2. shares-holding.csv:
+        stockID, #shares (hold),averagePrice, totalProfit
+    
+CurrentDate: isValidToday  // Enter a date as tody (DD/MM/YYYY): 
+    1. format (DD/MM/YYYY)
+    2. daily-price.csv MAX date, Min date
+    3. >= trade-record.csv MAX date
+(Can assume the date input is always valid)
+    if the input date is not a trade date, then automatically move to the next trade date. 賦予新的currentDate value
+
+
+
+    

@@ -1,0 +1,4 @@
+David,50
+Jessica,100
+James,20
+Joe,30
