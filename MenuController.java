@@ -38,12 +38,16 @@ public class MenuController {
 				currMenu = recordMenu;
 				break;
 			
-			case ConstantFlags.NAV_FRIEND_LIST:
-				Menu friendMenu = new FriendListMenu(nd.getPlayer());
-				friendMenu.setParentMenu(currMenu);
-				currMenu = friendMenu;
+			case ConstantFlags.NAV_ORDER_BY:
+				Menu orderMenu = new OrderMenu(nd.getStockId(),nd.getStartDate(),nd.getEndDate(),1);
+				orderMenu.setParentMenu(currMenu);
+				currMenu = orderMenu;
 				break;
-				
+			case ConstantFlags.NAV_STOCK_ENQUIRY:
+				Menu enquiryMenu = new StockEnquiryMenu(nd.getStockId());
+				enquiryMenu.setParentMenu(currMenu);
+				currMenu = enquiryMenu;
+				break;
 		}
 	}
 }
