@@ -48,6 +48,14 @@ public class MenuController {
 				enquiryMenu.setParentMenu(currMenu);
 				currMenu = enquiryMenu;
 				break;
+			case ConstantFlags.NAV_AUTO_TRADE:
+				#perform auto trade with given id and end date
+				String id = nd.getStockId();
+				String endDate = nd.getEndDate();
+				#after that set currentDate to this end Date 
+				#return mainMenu
+				Menu mainMenu = new MainMenu();
+				currMenu = mainMenu;
 		}
 	}
 }
