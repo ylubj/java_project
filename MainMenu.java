@@ -14,7 +14,7 @@ public class MainMenu extends Menu{
 		String today = StockTrader.getCurrentDate();
 		Screen.printMainMenu(today);
 	}
-	
+	#undone for trade
 	@Override
 	public NavigationData performAction(int optionIndex){
 		switch (optionIndex){
