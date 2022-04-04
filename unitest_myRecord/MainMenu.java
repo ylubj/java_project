@@ -20,9 +20,17 @@ public class MainMenu extends Menu{
 		switch (optionIndex){
 			case 1:
 				return new NavigationData(ConstantFlags.NAV_MY_RECORD,null,null,null);
-			/*
+			
 			case 2:
-				return new NavigationData(ConstantFlags.NAV_STOCK_ENQUIRY,null,null,null);
+				Stock s = null;
+				do{
+					Screen.printEnterStockId();
+					String stockId = Screen.keyboard.nextLine();
+					s = StocksInfo.findStockByID(stockId);
+				}while(s==null);
+				
+				return new NavigationData(ConstantFlags.NAV_STOCK_ENQUIRY,stockId,null,null);
+			/*
 			case 3:
 				return new NavigationData(ConstantFlags.NAV_TRADE,null,null,null);
 			case 4:

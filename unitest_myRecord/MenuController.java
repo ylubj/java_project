@@ -43,12 +43,13 @@ public class MenuController {
 				orderMenu.setParentMenu(currMenu);
 				currMenu = orderMenu;
 				break;
-				/*
+				
 			case ConstantFlags.NAV_STOCK_ENQUIRY:
 				Menu enquiryMenu = new StockEnquiryMenu(nd.getStockId());
 				enquiryMenu.setParentMenu(currMenu);
 				currMenu = enquiryMenu;
 				break;
+			/*
 			case ConstantFlags.NAV_AUTO_TRADE:
 				//perform auto trade with given id and end date
 				String id = nd.getStockId();

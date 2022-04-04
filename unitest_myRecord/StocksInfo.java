@@ -134,12 +134,15 @@ public class StocksInfo {
 	*/
 	private static void loadStockId(File file) throws IOException{
 		Scanner fileReader = new Scanner(file);
+		//System.out.println(Utilities.countFileNumber(file));
 		int listedIndex = 0;
 		int ETFindex = 0;
 		
 		while (fileReader.hasNext()){
 			String line = fileReader.nextLine();
 			String[] dataArr = line.split(","); // dataArr[0] stockID; dataArr[1] type
+			System.out.println(dataArr[0]);
+			System.out.println(dataArr[1]);
 			int type = Integer.parseInt(dataArr[1]);
 			if (type ==1)
 				stockList[listedIndex++].setStockID(dataArr[0]);
@@ -211,7 +214,7 @@ public class StocksInfo {
 		fileReader.close();
 	}
 	
-	private static Stock findStockByID(String id){
+	public static Stock findStockByID(String id){
 		for (int i = 0; i<stockList.length;i++)
 			if (id.equals(stockList[i].getStockID()))
 				return stockList[i];

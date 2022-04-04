@@ -21,17 +21,13 @@ public class Stock{
         return currentPrice;
     }
 	
-	public void setProfit(double _profit) {
-    }
+	public void setProfit(double _profit){}
 	    
-    public void setNAV(double _NAV) {
-    }
+    public void setNAV(double _NAV){}
 	    
-    public void setDividend(double _dividend) {
-    }
+    public void setDividend(double _dividend){}
 	
-	public void setListOfStockID (Stock[] _listOfStockID){
-	}
+	public void setListOfStockID (Stock[] _listOfStockID){}
 	
 	public Stock[] getListOfStockID(){
 		return null;
