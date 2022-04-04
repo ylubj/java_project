@@ -21,15 +21,14 @@ public class Utilities{
 		}
 		return dateArray;
 	}
-    /*
 	public static String oneDayPass(String currentDate){
-		int[] dateArray = transformStringArray(date.split("/"));
-		//check for month and holiday
-		dateArray[0] += 1;
-		String newDate = '';
-		return newDate;
+		String[] allDates = StocksInfo.getListOfTradeDates();
+		for(int i=0;i<allDates.length;i++){
+			if(allDates[i].equals(currentDate)&&i!=(allDates.length-1))
+				return allDates[i+1];
+		}
+		return null;
 	}
-    */
 	public static int countFileNumber(File file)throws IOException{
 		Scanner fileReader = new Scanner(file);
 		int count = 0;

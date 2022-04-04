@@ -8,6 +8,7 @@ public class StocksInfo {
 	private static int ETFnum;
 	private static TradeRecord[] tradeRecordList;
 	private static StockHolding[] stockHolding;
+	private static String[] allTradeDates;
 	
 	public static void loadStocks(String currentDate) throws IOException{
 		File stockMeta = new File("stock-meta.csv");
@@ -32,6 +33,23 @@ public class StocksInfo {
 	}
 	
 	//
+	public static void loadAllTradeDates()throws IOException{
+		File date = new File("daily-price.csv");
+		int count = Utilities.countFileNumber(date);
+		allTradeDates = new String[count];
+		Scanner fileReader = new Scanner(date);
+		count = 0;
+		while (fileReader.hasNext()){
+			String line = fileReader.nextLine();
+			String[] dataArr = line.split(","); 
+			// dataArr[0] date;
+			String oneDate = dataArr[0];
+			allTradeDates[count] = oneDate;
+			count++;
+		}
+		fileReader.close();
+	}
+	
 	public static void loadTradeRecord()throws IOException{
 		File tradeRecord = new File("trade-record.csv");
 		int number = Utilities.countFileNumber(tradeRecord);
@@ -60,8 +78,10 @@ public class StocksInfo {
 			stockHolding[count] = new StockHolding(dataArr[0],Integer.parseInt(dataArr[1]),Double.parseDouble(dataArr[2]),Double.parseDouble(dataArr[3]));
 			count++;
 		}
-		//System.out.println(count);
 		fileReader.close();
+	}
+	public static String[] getListOfTradeDates(){
+		return allTradeDates;
 	}
 	public static TradeRecord[] getListOfTradeRecord(){
 		return tradeRecordList;
@@ -106,6 +126,20 @@ public class StocksInfo {
 		return record;
 	}
 	
+	public static void getPriceEnquiry(String id,String startDate,String endDate)throws IOException{
+		File dailyPrice = new File("daily-price.csv");
+		Scanner fileReader = new Scanner(dailyPrice);
+		while (fileReader.hasNext()){
+			String line = fileReader.nextLine();
+			String[] dataArr = line.split(","); // dataArr[0] id; dataArr[1] #date;
+			if(dataArr[0].equals(id)){
+				if((Utilities.DateCompare(dataArr[1],startDate)>=0)&&(Utilities.DateCompare(dataArr[1],endDate)<=0)){
+					Screen.printPrice(dataArr[1],Double.parseDouble(dataArr[2]));
+				}
+			}
+		}
+		fileReader.close();
+	}
 	//
 	
 	public static Stock[] getStockList(){
@@ -177,6 +211,7 @@ public class StocksInfo {
 	/**
 		@param file "performance.csv"
 	*/
+	//pay attention its the lastest info, not the exact date
 	private static void loadListedInfo(File file, String currentDate) throws IOException{
 		Scanner fileReader = new Scanner(file);
 		String lastDate = "00/00/9999";

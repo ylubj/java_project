@@ -36,10 +36,11 @@ public class MainMenu extends Menu{
 				printEndDatePrompt();
 				String endDate = Screen.keyboard.nextLine();
 				return new NavigationData(ConstantFlags.NAV_AUTO_TRADE,'00700',null,endDate);
-			case 5:
-				#but the date is changed, need a mark(also load price then)
-				return new NavigationData(ConstantFlags.NAV_MAIN,null,null,null);
 			*/
+			case 5:
+				StockTrader.oneDayPass();
+				return new NavigationData(ConstantFlags.NAV_MAIN,null,null,null);
+			
 			case 6:
 				System.exit(0);
 			

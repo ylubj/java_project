@@ -1,12 +1,14 @@
+import java.io.*;
+
 public class MenuController {
 	private static Menu currMenu;
 	
-	public static void startMenu(){
+	public static void startMenu()throws IOException{
 		currMenu = new MainMenu();
 		askMenuOption();
 	}
 	
-	public static void askMenuOption(){
+	public static void askMenuOption()throws IOException{
 		NavigationData data = null;
 		do {
 			currMenu.printMenu();
@@ -20,7 +22,7 @@ public class MenuController {
 		} while (data!= null);
 	}
 	
-	public static void navigate(NavigationData nd){
+	public static void navigate(NavigationData nd)throws IOException{
 		switch (nd.getNavTo()){
 			case ConstantFlags.NAV_BACK:
 				Menu parentMenu = currMenu.getParentMenu();
@@ -28,6 +30,9 @@ public class MenuController {
 				currMenu = parentMenu;
 				break;
 			case ConstantFlags.NAV_MAIN:
+				StocksInfo.loadStocks(StockTrader.getCurrentDate());
+				StocksInfo.loadStockHolding();
+				StocksInfo.loadTradeRecord();
 				Menu main = new MainMenu();
 				main.setParentMenu(currMenu);
 				currMenu = main;
@@ -45,6 +50,13 @@ public class MenuController {
 				break;
 				
 			case ConstantFlags.NAV_STOCK_ENQUIRY:
+				if(nd.getStartDate()!=null){
+					String startDate = nd.getStartDate();
+					String endDate = nd.getEndDate();
+					if(Utilities.DateCompare(endDate,StockTrader.getCurrentDate())==1)
+						endDate = StockTrader.getCurrentDate();
+					StocksInfo.getPriceEnquiry(nd.getStockId(),startDate,endDate);
+				}
 				Menu enquiryMenu = new StockEnquiryMenu(nd.getStockId());
 				enquiryMenu.setParentMenu(currMenu);
 				currMenu = enquiryMenu;

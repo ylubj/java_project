@@ -8,18 +8,20 @@ public class StockTrader{
 	public static void setCurrentDate(String _newDate){
 		currentDate = _newDate;
 	}
-	/*
+	
 	public static void oneDayPass(){
 		//one day passes, update the date 
 		currentDate = Utilities.oneDayPass(currentDate);
+		setCurrentDate(currentDate);
 	}
-	*/
-	public static void main(String[] args) throws IOException{
+
+	public static void main(String[] args)throws IOException{
 		
 		/*
 			Set today
 			assume the date input is always valid
 		*/
+		StocksInfo.loadAllTradeDates();
 		Screen.printDateInsertion();
 		currentDate = Screen.keyboard.nextLine();
 		//recursively check if the date is a trade date
