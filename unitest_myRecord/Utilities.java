@@ -6,7 +6,7 @@ public class Utilities{
         int[] comparedArray = transformStringArray(comparedDate.split("/"));
         
         // date is before comparedDate
-        if (dateArray[2]<comparedArray[2] || (dateArray[2]==comparedArray[2] && dateArray[1]<comparedArray[1])  || (dateArray[2]==comparedArray[2] && dateArray[1]== comparedArray[1] && dateArray[0]== comparedArray[0]) )
+        if (dateArray[2]<comparedArray[2] || (dateArray[2]==comparedArray[2] && dateArray[1]<comparedArray[1])  || (dateArray[2]==comparedArray[2] && dateArray[1]== comparedArray[1] && dateArray[0]<comparedArray[0]) )
             return -1;
         else if (dateArray[0]== comparedArray[0] && dateArray[1]== comparedArray[1] && dateArray[2]== comparedArray[2]) // same date
             return 0;
@@ -30,8 +30,7 @@ public class Utilities{
 		return newDate;
 	}
     */
-	public static int countFileNumber(String s)throws IOException{
-		File file = new File(s);
+	public static int countFileNumber(File file)throws IOException{
 		Scanner fileReader = new Scanner(file);
 		int count = 0;
 		while (fileReader.hasNext()){
@@ -39,7 +38,7 @@ public class Utilities{
 			count++;
 		}
 		fileReader.close();
-		System.out.println(count);
+		//System.out.println(count);
 		return count;
 	}
 	

@@ -34,22 +34,23 @@ public class StocksInfo {
 	//
 	public static void loadTradeRecord()throws IOException{
 		File tradeRecord = new File("trade-record.csv");
-		int number = Utilities.countFileNumber("trade-record.csv");
+		int number = Utilities.countFileNumber(tradeRecord);
 		tradeRecordList = new TradeRecord[number];
 		Scanner fileReader = new Scanner(tradeRecord);
 		int count = 0;
 		while (fileReader.hasNext()){
 			String line = fileReader.nextLine();
-			String[] dataArr = line.split(","); // dataArr[0] date; dataArr[1] id; dataArr[2] price; dataArr[3] #shares, dataArr[4] direction
+			String[] dataArr = line.split(","); 
+			// dataArr[0] date; dataArr[1] id; dataArr[2] price; dataArr[3] #shares, dataArr[4] direction
+			String id = dataArr[1];
 			tradeRecordList[count] = new TradeRecord(dataArr[1],dataArr[0], Double.parseDouble(dataArr[2]),Integer.parseInt(dataArr[3]),Integer.parseInt(dataArr[4]));
 			count++;
 		}
 		fileReader.close();
 	}
 	public static void loadStockHolding()throws IOException{
-		String filename = "shares-holding.csv";
 		File sharesHolding = new File("shares-holding.csv");
-		int number = Utilities.countFileNumber(filename);
+		int number = Utilities.countFileNumber(sharesHolding);
 		stockHolding = new StockHolding[number];
 		Scanner fileReader = new Scanner(sharesHolding);
 		int count = 0;
@@ -86,11 +87,25 @@ public class StocksInfo {
 		return record;
 	}
 	
-	/*
-	public static getTradeRecordByPeriod(String id){
-		
+	public static TradeRecord[] getTradeRecordByPeriod(String startDate,String endDate){
+		int count=0;
+		for(int i=0;i<tradeRecordList.length;i++){
+			String date = tradeRecordList[i].getDate();
+			if(Utilities.DateCompare(date,startDate)>=0&&Utilities.DateCompare(date,endDate)<=0)
+				count++;
+		}
+		TradeRecord[] record = new TradeRecord[count];
+		count=0;
+		for(int i=0;i<tradeRecordList.length;i++){
+			String date = tradeRecordList[i].getDate();
+			if(Utilities.DateCompare(date,startDate)>=0&&Utilities.DateCompare(date,endDate)<=0){
+				record[count] = tradeRecordList[i];
+				count++;
+			}
+		}
+		return record;
 	}
-	*/
+	
 	//
 	
 	public static Stock[] getStockList(){

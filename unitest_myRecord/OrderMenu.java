@@ -14,7 +14,12 @@ public class OrderMenu extends Menu{
 	@Override
 	public void printMenu(){
 		//print trade record based on stock id or date period
-		TradeRecord[] record = StocksInfo.getTradeRecordById(stockId);
+		TradeRecord[] record = null;
+		if(stockId!=null)
+			record = StocksInfo.getTradeRecordById(stockId);
+		else{
+			record = StocksInfo.getTradeRecordByPeriod(startDate,endDate);
+		}
 		for(int i=0;i<record.length;i++){
 			Screen.printTradeRecord(record[i].getDate(),record[i].getId(),record[i].getDirection(),record[i].getPrice(),record[i].getShares(),record[i].getPrice()*record[i].getShares());
 		}
