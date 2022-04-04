@@ -22,17 +22,15 @@ public class MainMenu extends Menu{
 				return new NavigationData(ConstantFlags.NAV_MY_RECORD,null,null,null);
 			
 			case 2:
-				Stock s = null;
-				do{
-					Screen.printEnterStockId();
-					String stockId = Screen.keyboard.nextLine();
-					s = StocksInfo.findStockByID(stockId);
-				}while(s==null);
-				
-				return new NavigationData(ConstantFlags.NAV_STOCK_ENQUIRY,stockId,null,null);
-			/*
+				Screen.printEnterStockId();
+				String stockId1 = Screen.keyboard.nextLine();
+				return new NavigationData(ConstantFlags.NAV_STOCK_ENQUIRY,stockId1,null,null);
+			
 			case 3:
-				return new NavigationData(ConstantFlags.NAV_TRADE,null,null,null);
+				Screen.printEnterStockId();
+				String stockId2 = Screen.keyboard.nextLine();
+				return new NavigationData(ConstantFlags.NAV_TRADE,stockId2,null,null);
+			/*
 			case 4:
 				#get an end date and do auto buy/sell
 				printEndDatePrompt();
@@ -41,9 +39,10 @@ public class MainMenu extends Menu{
 			case 5:
 				#but the date is changed, need a mark(also load price then)
 				return new NavigationData(ConstantFlags.NAV_MAIN,null,null,null);
+			*/
 			case 6:
 				System.exit(0);
-			*/
+			
 		}
 		return null;
 	}

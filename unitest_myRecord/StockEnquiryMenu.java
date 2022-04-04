@@ -7,7 +7,7 @@ public class StockEnquiryMenu extends Menu{
 		Stock enquiryStock = StocksInfo.findStockByID(stockId);
 		Stock[] includedStock = enquiryStock.getListOfStockID();
 		if(includedStock == null)
-			len = 1;
+			len = 0;
 		else
 			len = includedStock.length;
 	}
@@ -21,8 +21,8 @@ public class StockEnquiryMenu extends Menu{
 		}
 		else{
 			Screen.printStockPriceInfo(stockId,enquiryStock.getCurrentPrice());
-			for (int i = 1; i<len+1;i++){
-				Screen.printStockOption(i,includedStock[i].getStockID());
+			for (int i = 0; i<len;i++){
+				Screen.printStockOption(i+1,includedStock[i].getStockID());
 			}
 		}
 		Screen.printTradeOption(len+1);
@@ -44,13 +44,13 @@ public class StockEnquiryMenu extends Menu{
 			Screen.printEndDatePrompt();
 			String endDate = Screen.keyboard.nextLine();
 			//here i plan to have a helper function in utility which return price provided with date period
-			//return new NavigationData(ConstantFlags.NAV_STOCK_ENQUIRY,null,null,null);
+			return new NavigationData(ConstantFlags.NAV_STOCK_ENQUIRY,stockId,startDate,endDate);
 		}
 		else if(optionIndex == len + 3){
 			return new NavigationData(ConstantFlags.NAV_BACK,null,null,null);
 		}
 		return new NavigationData(
-			ConstantFlags.NAV_STOCK_ENQUIRY, includedStock[optionIndex].getStockID(),null,null);
+			ConstantFlags.NAV_STOCK_ENQUIRY, includedStock[optionIndex-1].getStockID(),null,null);
 	}
 	
 }

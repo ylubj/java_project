@@ -5,6 +5,9 @@ public class StockTrader{
 	public static String getCurrentDate(){
 		return currentDate;
 	}
+	public static void setCurrentDate(String _newDate){
+		currentDate = _newDate;
+	}
 	/*
 	public static void oneDayPass(){
 		//one day passes, update the date 

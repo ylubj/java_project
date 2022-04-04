@@ -141,8 +141,8 @@ public class StocksInfo {
 		while (fileReader.hasNext()){
 			String line = fileReader.nextLine();
 			String[] dataArr = line.split(","); // dataArr[0] stockID; dataArr[1] type
-			System.out.println(dataArr[0]);
-			System.out.println(dataArr[1]);
+			//System.out.println(dataArr[0]);
+			//System.out.println(dataArr[1]);
 			int type = Integer.parseInt(dataArr[1]);
 			if (type ==1)
 				stockList[listedIndex++].setStockID(dataArr[0]);
