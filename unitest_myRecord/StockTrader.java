@@ -12,6 +12,7 @@ public class StockTrader{
 	public static void oneDayPass(){
 		//one day passes, update the date 
 		currentDate = Utilities.oneDayPass(currentDate);
+		//System.out.println(currentDate);
 		setCurrentDate(currentDate);
 	}
 

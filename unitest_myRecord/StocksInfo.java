@@ -43,7 +43,7 @@ public class StocksInfo {
 			String line = fileReader.nextLine();
 			String[] dataArr = line.split(","); 
 			// dataArr[0] date;
-			String oneDate = dataArr[0];
+			String oneDate = dataArr[1];
 			allTradeDates[count] = oneDate;
 			count++;
 		}
@@ -213,19 +213,25 @@ public class StocksInfo {
 	*/
 	//pay attention its the lastest info, not the exact date
 	private static void loadListedInfo(File file, String currentDate) throws IOException{
+		String[] stockLastDate = new String[stockList.length];
+		
+		for(int i=0;i<stockLastDate.length;i++)
+			stockLastDate[i] = "00/00/0000";
 		Scanner fileReader = new Scanner(file);
-		String lastDate = "00/00/9999";
 		while (fileReader.hasNext()){
 			String line = fileReader.nextLine();
             String[] dataArr = line.split(",") ;// [0] stockID, [1] date, [2] profit, [3] NAV, [4] dividend
+			//System.out.println(dataArr[0]);
 			for (int i=0; i<listedNum;i++){
-				if (dataArr[0].equals(stockList[i].getStockID()) && Utilities.DateCompare(currentDate,dataArr[1])>=0 && Utilities.DateCompare(currentDate,lastDate)<0){
+				if (dataArr[0].equals(stockList[i].getStockID()) && Utilities.DateCompare(currentDate,dataArr[1])>=0 && Utilities.DateCompare(stockLastDate[i],dataArr[1])<0){
 					stockList[i].setProfit(Double.parseDouble(dataArr[2]));
 					stockList[i].setNAV(Double.parseDouble(dataArr[2]));
 					stockList[i].setDividend(Double.parseDouble(dataArr[3]));
+					stockLastDate[i] = dataArr[1];
 				}
+				
 			}
-			lastDate = dataArr[1];
+			
 		}
 		fileReader.close();
 	}
