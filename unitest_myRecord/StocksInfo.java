@@ -262,6 +262,13 @@ public class StocksInfo {
 		return null;
 	}
 	
+	
+	//
+	public static void updateTradeRecord(String date,String id,double price,int amount,int direction){
+		//writing to csv and update the variable
+	}
+	//
+	
 	private static void setListOfStockOfSingleETF (Stock stock, String[] meta){
 		Stock[] listOfStockID = new ListedCompany[meta.length-2];
 		for (int i=2;i<meta.length;i++){

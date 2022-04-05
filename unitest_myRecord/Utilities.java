@@ -41,4 +41,8 @@ public class Utilities{
 		return count;
 	}
 	
+	public static void updateTradeRecord(String date,String id,double price,int amount,int direction){
+		
+	}
+	
 }

@@ -7,4 +7,6 @@ public class ConstantFlags{
 	public static final int NAV_TRADE_RECORD = 6;
 	public static final int NAV_ORDER_BY = 7;
 	public static final int NAV_AUTO_TRADE = 8;
+	public static final int NAV_TRADE_BUY = 8;
+	public static final int NAV_TRADE_SELL = 10;
 }

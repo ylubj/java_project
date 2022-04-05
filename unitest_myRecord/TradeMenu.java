@@ -7,6 +7,8 @@ public class TradeMenu extends Menu{
 	
 	@Override
 	public void printMenu(){
+		Stock s = StocksInfo.findStockByID(stockId);
+		Screen.printStockPriceInfo(stockId,s.getCurrentPrice());
 		Screen.printTradeMenu();
 	}
 	//undone
@@ -15,9 +17,9 @@ public class TradeMenu extends Menu{
 		switch (optionIndex){
 			//for 1 and 2, check the money and update record !!!! IMPORTANT Without re-launch the program, all enquiry and record should be up-to-date
 			case 1:
-				return new NavigationData(ConstantFlags.NAV_TRADE,stockId,null,null);
+				return new NavigationData(ConstantFlags.NAV_TRADE_BUY,stockId,null,null);
 			case 2:
-				return new NavigationData(ConstantFlags.NAV_TRADE,stockId,null,null);
+				return new NavigationData(ConstantFlags.NAV_TRADE_SELL,stockId,null,null);
 			case 3:
 				return new NavigationData(ConstantFlags.NAV_BACK,null,null,null);
 		}

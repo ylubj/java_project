@@ -65,6 +65,21 @@ public class MenuController {
 				Menu tradeMenu = new TradeMenu(nd.getStockId());
 				tradeMenu.setParentMenu(currMenu);
 				currMenu = tradeMenu;
+			case ConstantFlags.NAV_TRADE_BUY:
+				//check if cash is enough
+				//Screen.printInsufficientCash();
+				//Screen.printInsufficientShare();
+				Screen.printAmountOfTradeSharePrompt(100);
+				int amount = Integer.parseInt(Screen.keyboard.nextLine());
+				double price = StocksInfo.findStockByID(nd.getStockId()).getCurrentPrice();
+				StocksInfo.updateTradeRecord(StockTrader.getCurrentDate(),nd.getStockId(),price,amount,1);
+				Menu tradeMenu = new TradeMenu(nd.getStockId());
+				tradeMenu.setParentMenu(currMenu);
+				currMenu = tradeMenu;
+			case ConstantFlags.NAV_TRADE_SELL:
+				Menu tradeMenu = new TradeMenu(nd.getStockId());
+				tradeMenu.setParentMenu(currMenu);
+				currMenu = tradeMenu;
 			/*
 			case ConstantFlags.NAV_AUTO_TRADE:
 				//perform auto trade with given id and end date
