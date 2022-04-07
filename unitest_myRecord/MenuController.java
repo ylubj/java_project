@@ -73,13 +73,13 @@ public class MenuController {
 				int amount = Integer.parseInt(Screen.keyboard.nextLine());
 				double price = StocksInfo.findStockByID(nd.getStockId()).getCurrentPrice();
 				StocksInfo.updateTradeRecord(StockTrader.getCurrentDate(),nd.getStockId(),price,amount,1);
-				Menu tradeMenu = new TradeMenu(nd.getStockId());
-				tradeMenu.setParentMenu(currMenu);
-				currMenu = tradeMenu;
+				Menu tradeMenu2 = new TradeMenu(nd.getStockId());
+				tradeMenu2.setParentMenu(currMenu);
+				currMenu = tradeMenu2;
 			case ConstantFlags.NAV_TRADE_SELL:
-				Menu tradeMenu = new TradeMenu(nd.getStockId());
-				tradeMenu.setParentMenu(currMenu);
-				currMenu = tradeMenu;
+				Menu tradeMenu3 = new TradeMenu(nd.getStockId());
+				tradeMenu3.setParentMenu(currMenu);
+				currMenu = tradeMenu3;
 			/*
 			case ConstantFlags.NAV_AUTO_TRADE:
 				//perform auto trade with given id and end date

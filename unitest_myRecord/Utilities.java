@@ -41,8 +41,39 @@ public class Utilities{
 		return count;
 	}
 	
-	public static void updateTradeRecord(String date,String id,double price,int amount,int direction){
+	public static void quickSortEffprice(TradeRecord[] array,int start, int end){
+		if (start>=end)
+			return ;
 		
+		int m = partitionEffprice(array,start,end);
+		quickSortEffprice(array,start,m-1);
+		quickSortEffprice(array,m+1,end);
 	}
+	
+	public static int partitionEffprice(TradeRecord[] array,int start, int end){
+		TradeRecord pivot = array[end];
+		
+		int currProcessing = start;
+		int firstElementInRight = start;
+		
+		while (currProcessing <end){
+			if (array[currProcessing].getPrice() < pivot.getPrice()){ 
+				// swap array[currProcessing] with array[firstElementInRight]
+				// currProcessing++ and firstElementInRight++
+				TradeRecord tmp = array[currProcessing];
+				array[currProcessing]=array[firstElementInRight];
+				array[firstElementInRight]=tmp;
+				currProcessing++;
+				firstElementInRight++;
+			}else{
+				currProcessing++;
+			}
+		}
+		array[end]=array[firstElementInRight];
+		array[firstElementInRight]=pivot;
+		
+		return firstElementInRight; // pivot position
+	}
+	
 	
 }

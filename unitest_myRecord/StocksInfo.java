@@ -140,6 +140,16 @@ public class StocksInfo {
 		}
 		fileReader.close();
 	}
+	
+	public static void orderTradeRecord(int option,TradeRecord[] record){
+		Utilities.quickSortEffprice(record,0,record.length-1);
+		for(int i=0;i<record.length;i++){
+			Screen.printTradeRecord(record[i].getDate(),record[i].getId(),record[i].getDirection(),record[i].getPrice(),record[i].getShares(),record[i].getPrice()*record[i].getShares());
+		}
+	}
+	
+	
+	
 	//
 	
 	public static Stock[] getStockList(){

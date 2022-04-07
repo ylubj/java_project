@@ -3,6 +3,7 @@ public class OrderMenu extends Menu{
 	private String startDate;
 	private String endDate;
 	private int orderFlag;
+	private TradeRecord[] record = null;
 	
 	public OrderMenu(String _stockId, String _startDate, String _endDate, int option){
 		stockId = _stockId;
@@ -14,7 +15,6 @@ public class OrderMenu extends Menu{
 	@Override
 	public void printMenu(){
 		//print trade record based on stock id or date period
-		TradeRecord[] record = null;
 		if(stockId!=null)
 			record = StocksInfo.getTradeRecordById(stockId);
 		else{
@@ -35,7 +35,8 @@ public class OrderMenu extends Menu{
 				return new NavigationData(ConstantFlags.NAV_ORDER_BY,null,null,null);
 			case 2:
 				//order by trade price
-				return new NavigationData(ConstantFlags.NAV_ORDER_BY,null,null,null);
+				StocksInfo.orderTradeRecord(1,record);
+				return new NavigationData(ConstantFlags.NAV_ORDER_BY,stockId,startDate,endDate);
 			case 3:
 				//order by trade shares
 				return new NavigationData(ConstantFlags.NAV_ORDER_BY,null,null,null);
